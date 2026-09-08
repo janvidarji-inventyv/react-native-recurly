@@ -6,13 +6,7 @@ import { Image, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const tabBar = components.tabBar;
-const Tablayout = () => {
-    const insets = useSafeAreaInsets();
-    // type TabIconProps = {
-    //     focused: boolean;
-    //     icon: any;
-    // };
-    const TabIcon = ({ focused, icon }:TabIconProps) => {
+const TabIcon = ({ focused, icon }:TabIconProps) => {
         return (
             <View className ="tabs-icon">
                 <View className = {clsx('tabs-pill', focused && 'tabs-active')}>
@@ -21,11 +15,13 @@ const Tablayout = () => {
             </View>
         );
     };
-
+const Tablayout = () => {
+    const insets = useSafeAreaInsets();
      return (
         <Tabs
              screenOptions={{
                      headerShown: false,
+                     tabBarShowLabel: false,
                      tabBarStyle: {
                          position: 'absolute',
                          bottom: Math.max(insets.bottom, tabBar.horizontalInset),
@@ -43,8 +39,7 @@ const Tablayout = () => {
                         width: tabBar.iconFrame,
                         height: tabBar.iconFrame,
                         alignItems: 'center',
-                     },
-                     tabBarShowLabel: false, }}>
+                     }}}>
        {tabs.map((tab) => (
          <Tabs.Screen
            key={tab.name}
